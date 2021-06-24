@@ -42,6 +42,32 @@ namespace ExemploApiCatalogoJogos.Repositories
             return jogos;
         }
 
+        public async Task<List<Jogo>> Obter(string nome)
+        {
+            var jogos = new List<Jogo>();
+
+            var comando = $"select * from Jogos where Nome = '{nome}'";
+           
+            await sqlConnection.OpenAsync();
+            SqlCommand sqlCommand = new SqlCommand(comando, sqlConnection);
+            SqlDataReader sqlDataReader = await sqlCommand.ExecuteReaderAsync();
+
+            while (sqlDataReader.Read())
+            {
+                jogos.Add(new Jogo
+                {
+                    Id = (Guid)sqlDataReader["Id"],
+                    Nome = (string)sqlDataReader["Nome"],
+                    Produtora = (string)sqlDataReader["Produtora"],
+                    Preco = (double)sqlDataReader["Preco"]
+                });
+            }
+
+            await sqlConnection.CloseAsync();
+
+            return jogos;
+        }
+
         public async Task<Jogo> Obter(Guid id)
         {
             Jogo jogo = null;

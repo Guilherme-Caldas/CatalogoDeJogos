@@ -30,11 +30,9 @@ namespace ExemploApiCatalogoJogos
             services.AddScoped<IJogoRepository, JogoRepository>();
 
             #region CicloDeVida
-
-            services.AddSingleton<IExemploSingleton, ExemploCicloDeVida>();
+           
             services.AddScoped<IExemploScoped, ExemploCicloDeVida>();
-            services.AddTransient<IExemploTransient, ExemploCicloDeVida>();
-
+         
             #endregion
 
             services.AddControllers();
@@ -72,4 +70,3 @@ namespace ExemploApiCatalogoJogos
         }
     }
 }
-//C:\Users\thiag\Documents\DIO\C#\ExemploApiCatalogoJogos\ExemploApiCatalogoJogos\ExemploApiCatalogoJogos.xml

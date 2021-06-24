@@ -36,6 +36,11 @@ namespace ExemploApiCatalogoJogos.Repositories
             return Task.FromResult(jogos.Values.Where(jogo => jogo.Nome.Equals(nome) && jogo.Produtora.Equals(produtora)).ToList());
         }
 
+        public Task<List<Jogo>> Obter(string nome)
+        {
+            return Task.FromResult(jogos.Values.Where(jogo => jogo.Nome.Equals(nome)).ToList());
+        }
+
         public Task<List<Jogo>> ObterSemLambda(string nome, string produtora)
         {
             var retorno = new List<Jogo>();
